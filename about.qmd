@@ -3,28 +3,62 @@ title: "About Me"
 sidebar: false 
 ---
 
+My name is Ahmet. I am an industrial engieering senior student. I will share my projects and blog-posts via this website. **Check my resume [here](my_documents/Ahmet_Kursad_Gurel_CV2024.pdf).**
+
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkey, 2021 - ongoing.
 
 # Work Experience
 
-## Employements
-
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
-
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+**Turkiye Sugar Factories INC - *2024***
 
-2.  Firm bbb, position yyy, year yyy
+Internship at production planning department. Experienced both field and office works. I have organized and
+planned the maintenance activities within the factory.
 
-# Projects
+**Tekfen Construction INC - *2024***
+
+Internship at purchasing department. Worked on economic order analysis, comparison tables, order planning and
+related fields.I have gained the capability to use Oracle ERP systems.
+
+**Elztec Construction Machinery Spare Parts Co - *2022***
+
+Volunteer Intership.I have experience in both sales and IT. I developed a small script designed for marketing professionals to easily generate leads. This script enables users to create lead lists from Google Maps within minutes.
+
+# Non-Academic Experiences and Projects:
+
+**Created and Founded** [kleopsbeauty.com](kleopsbeauty.com) ***- 2024***
+
+![](images/KLEOPS LOGO 200X60.png){width="148"}
+
+An e-commerce venture dedicated to women's beauty.
+
+**CO-Founder of Troya Digital Marketing Agency -2022**
+
+![](images/final troya.png){width="102"}
+
+Assisting local businesses and tech companies in enhancing their digital visibility.
 
 # Competencies
 
-R, Quarto, Git, Python
+R, Quarto, Git, Python, Excel, AutoCAD, HTML, Meta Marketing, Search Engine Optimization
+
+# Certificates:
+
+-   Stock Exchange (BIST) Student Education Program - Borsa Istanbul
+
+-   FC1x: Fat Chance: Probability from the Ground Up - Harvard University
+
+-   AI0101EN: Al for Everyone: Master the Basics. -IBM
+
+-   PY0101EN Python Basics for Data Science. -IBM
+
+-   McKinsey Forward Program - McKinsey&Company
+
+-   Capital Markets Board (SPK) Education Seminar for University Students -Capital Markets Board
 
 # Hobbies
+
+Riding motocycle with my friends, collecting watches, trading in stock-market, robotics

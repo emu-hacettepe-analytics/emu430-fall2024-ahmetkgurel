@@ -4,12 +4,18 @@ title: "Assignment 1"
 
 # Assignment 1
 
-```{r}
-1 + 1
-```
-
 My first assignment has two parts.
 
-## (a)
+## (a) Questions for BAYKAL HAFIZOĞLU
 
-## (b)
+In which situations is it more effective for a technical staff member to customize a product for different users?\
+A) When all users have the same needs\
+**B) When different users have different needs**\
+C) When the product has completely fixed features\
+D) When the technical staff member is not authorized to customize
+
+What are the advantages of customizing a product or service according to the needs of various users? What challenges might be encountered in this process?
+
+**Answer :** Customizing according to user needs increases customer satisfaction, making the product more useful and appropriate. Additionally, customization can provide a competitive advantage. However, this process may face challenges such as technical difficulties, increased time and costs, and managing different user demands.
+
+# (b) Tasks
