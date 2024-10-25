@@ -8,3 +8,5 @@ Hello! My name is Ahmet Kürşad Gürel.
 This is my personal webpage.
 
 Please stay tuned to follow my works on data analytics, blog posts, and more.
+
+<img src="images/godfather.gif" alt="Description of GIF" width="500px" height="500px"/>
