@@ -19,3 +19,76 @@ What are the advantages of customizing a product or service according to the nee
 **Answer :** Customizing according to user needs increases customer satisfaction, making the product more useful and appropriate. Additionally, customization can provide a competitive advantage. However, this process may face challenges such as technical difficulties, increased time and costs, and managing different user demands.
 
 # (b) Tasks
+
+**Libraries used :**
+
+```{r}
+library(readr)
+library(knitr)
+library(kableExtra)
+library(dslabs)
+```
+
+**Printing the first 10 rows of table. In this part we use kableExtra library to get more readable output :**
+
+```{r}
+data("polls_us_election_2016")  
+
+# Display the first 10 rows in table format
+polls_us_election_2016 %>%
+  head(10) %>%
+  kable("html") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+
+**Showing the total NA values in dataset :**
+
+```{r}
+total_na <- sum(is.na(polls_us_election_2016))
+total_na
+
+```
+
+**Replacing NA in numeric columns with 1999 and replacing NA in character columns with "Ahmet":**
+
+```{r}
+
+# Load the necessary library and dataset
+library(dslabs)
+data("polls_us_election_2016")
+
+# Create a new object to store the modified dataset
+modified_polls <- polls_us_election_2016
+
+# Replace NA values
+modified_polls[] <- lapply(modified_polls, function(col) {
+  if (is.numeric(col)) {
+    col[is.na(col)] <- 1999  # Replace NA in numeric columns with 1999
+  } else if (is.character(col)) {
+    col[is.na(col)] <- "Ahmet"  # Replace NA in character columns with "Ahmet"
+  } else if (is.factor(col)) {
+    col <- as.character(col)  # Convert factors to character
+    col[is.na(col)] <- "Ahmet"  # Replace NA in character columns with "Ahmet"
+    col <- as.factor(col) 
+  }
+  return(col)
+})
+
+```
+
+**Checking the number of NA values :**
+
+```{r}
+total_na <- sum(is.na(modified_polls))
+total_na
+```
+
+**Printing the modified table :**
+
+```{r}
+modified_polls %>%
+  head(10) %>%
+  kable("html") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover", "condensed"))
+```

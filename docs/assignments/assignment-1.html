@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +104,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -227,6 +265,463 @@ D) When the technical staff member is not authorized to customize</p>
 </section>
 <section id="b-tasks" class="level1">
 <h1>(b) Tasks</h1>
+<p><strong>Libraries used :</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Printing the first 10 rows of table. In this part we use kableExtra library to get more readable output :</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"polls_us_election_2016"</span>)  </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first 10 rows in table format</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>polls_us_election_2016 <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">state</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">startdate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">enddate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pollster</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">grade</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">samplesize</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_clinton</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_trump</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_johnson</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_mcmullin</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_clinton</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_trump</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_johnson</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_mcmullin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">ABC News/Washington Post</td>
+<td style="text-align: left;">A+</td>
+<td style="text-align: right;">2220</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">45.20163</td>
+<td style="text-align: right;">41.72430</td>
+<td style="text-align: right;">4.626221</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-01</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">Google Consumer Surveys</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">26574</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">38.03</td>
+<td style="text-align: right;">35.69</td>
+<td style="text-align: right;">5.46</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">43.34557</td>
+<td style="text-align: right;">41.21439</td>
+<td style="text-align: right;">5.175792</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-02</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">2195</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">42.00</td>
+<td style="text-align: right;">39.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">42.02638</td>
+<td style="text-align: right;">38.81620</td>
+<td style="text-align: right;">6.844734</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-04</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">3677</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">41.00</td>
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">45.65676</td>
+<td style="text-align: right;">40.92004</td>
+<td style="text-align: right;">6.069454</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Gravis Marketing</td>
+<td style="text-align: left;">B-</td>
+<td style="text-align: right;">16639</td>
+<td style="text-align: left;">rv</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">46.84089</td>
+<td style="text-align: right;">42.33184</td>
+<td style="text-align: right;">3.726098</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Fox News/Anderson Robbins Research/Shaw &amp; Company Research</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">1295</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">48.00</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">49.02208</td>
+<td style="text-align: right;">43.95631</td>
+<td style="text-align: right;">3.057876</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-02</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">CBS News/New York Times</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1426</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">41.00</td>
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">45.11649</td>
+<td style="text-align: right;">40.92722</td>
+<td style="text-align: right;">4.341786</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-05</td>
+<td style="text-align: left;">NBC News/Wall Street Journal</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1282</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">40.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">43.58576</td>
+<td style="text-align: right;">40.77325</td>
+<td style="text-align: right;">5.365788</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Mexico</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Zia Poll</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">8439</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">46.00</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">44.82594</td>
+<td style="text-align: right;">41.59978</td>
+<td style="text-align: right;">7.870127</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-04</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">IBD/TIPP</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1107</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">41.20</td>
+<td style="text-align: right;">42.70</td>
+<td style="text-align: right;">7.10</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">42.92745</td>
+<td style="text-align: right;">42.23545</td>
+<td style="text-align: right;">6.316175</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Showing the total NA values in dataset :</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>total_na <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(polls_us_election_2016))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>total_na</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11604</code></pre>
+</div>
+</div>
+<p><strong>Replacing NA in numeric columns with 1999 and replacing NA in character columns with “Ahmet”:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary library and dataset</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"polls_us_election_2016"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new object to store the modified dataset</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>modified_polls <span class="ot">&lt;-</span> polls_us_election_2016</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace NA values</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>modified_polls[] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(modified_polls, <span class="cf">function</span>(col) {</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(col)) {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    col[<span class="fu">is.na</span>(col)] <span class="ot">&lt;-</span> <span class="dv">1999</span>  <span class="co"># Replace NA in numeric columns with 1999</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.character</span>(col)) {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    col[<span class="fu">is.na</span>(col)] <span class="ot">&lt;-</span> <span class="st">"Ahmet"</span>  <span class="co"># Replace NA in character columns with "Ahmet"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.factor</span>(col)) {</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    col <span class="ot">&lt;-</span> <span class="fu">as.character</span>(col)  <span class="co"># Convert factors to character</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    col[<span class="fu">is.na</span>(col)] <span class="ot">&lt;-</span> <span class="st">"Ahmet"</span>  <span class="co"># Replace NA in character columns with "Ahmet"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    col <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(col) </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(col)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Checking the number of NA values :</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>total_na <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(modified_polls))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>total_na</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p><strong>Printing the modified table :</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>modified_polls <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">state</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">startdate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">enddate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">pollster</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">grade</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">samplesize</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_clinton</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_trump</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_johnson</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rawpoll_mcmullin</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_clinton</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_trump</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_johnson</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">adjpoll_mcmullin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">ABC News/Washington Post</td>
+<td style="text-align: left;">A+</td>
+<td style="text-align: right;">2220</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">45.20163</td>
+<td style="text-align: right;">41.72430</td>
+<td style="text-align: right;">4.626221</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-01</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">Google Consumer Surveys</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">26574</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">38.03</td>
+<td style="text-align: right;">35.69</td>
+<td style="text-align: right;">5.46</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">43.34557</td>
+<td style="text-align: right;">41.21439</td>
+<td style="text-align: right;">5.175792</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-02</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Ipsos</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">2195</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">42.00</td>
+<td style="text-align: right;">39.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">42.02638</td>
+<td style="text-align: right;">38.81620</td>
+<td style="text-align: right;">6.844734</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-04</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">YouGov</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">3677</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">41.00</td>
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">45.65676</td>
+<td style="text-align: right;">40.92004</td>
+<td style="text-align: right;">6.069454</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Gravis Marketing</td>
+<td style="text-align: left;">B-</td>
+<td style="text-align: right;">16639</td>
+<td style="text-align: left;">rv</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">46.84089</td>
+<td style="text-align: right;">42.33184</td>
+<td style="text-align: right;">3.726098</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Fox News/Anderson Robbins Research/Shaw &amp; Company Research</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">1295</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">48.00</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">49.02208</td>
+<td style="text-align: right;">43.95631</td>
+<td style="text-align: right;">3.057876</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-02</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">CBS News/New York Times</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1426</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">41.00</td>
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">45.11649</td>
+<td style="text-align: right;">40.92722</td>
+<td style="text-align: right;">4.341786</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-03</td>
+<td style="text-align: left;">2016-11-05</td>
+<td style="text-align: left;">NBC News/Wall Street Journal</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1282</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">40.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">43.58576</td>
+<td style="text-align: right;">40.77325</td>
+<td style="text-align: right;">5.365788</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New Mexico</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">2016-11-06</td>
+<td style="text-align: left;">Zia Poll</td>
+<td style="text-align: left;">Ahmet</td>
+<td style="text-align: right;">8439</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">46.00</td>
+<td style="text-align: right;">44.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">44.82594</td>
+<td style="text-align: right;">41.59978</td>
+<td style="text-align: right;">7.870127</td>
+<td style="text-align: right;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U.S.</td>
+<td style="text-align: left;">2016-11-04</td>
+<td style="text-align: left;">2016-11-07</td>
+<td style="text-align: left;">IBD/TIPP</td>
+<td style="text-align: left;">A-</td>
+<td style="text-align: right;">1107</td>
+<td style="text-align: left;">lv</td>
+<td style="text-align: right;">41.20</td>
+<td style="text-align: right;">42.70</td>
+<td style="text-align: right;">7.10</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">42.92745</td>
+<td style="text-align: right;">42.23545</td>
+<td style="text-align: right;">6.316175</td>
+<td style="text-align: right;">1999</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 
 
 </section>
